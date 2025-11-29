@@ -1,0 +1,203 @@
+.skills-panel {
+  padding: 12px;
+  background: var(--color-paper);
+}
+
+.skills-panel__title {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-ink);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid var(--color-ink);
+  padding-bottom: 6px;
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: linear-gradient(to right, #FFF 0%, #F8F4EC 100%);
+  border: 1px solid #D4C4B0;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.skill-row:hover {
+  background: linear-gradient(to right, #FFF5E8 0%, #F0E8DC 100%);
+  border-color: var(--color-ink);
+  transform: translateX(2px);
+}
+
+.skill-row--has-talents {
+  background: linear-gradient(to right, #FFF9E6 0%, #FFF3D6 100%);
+  border-color: var(--color-brass);
+  border-width: 2px;
+}
+
+.skill-row--has-talents:hover {
+  background: linear-gradient(to right, #FFF5D6 0%, #FFEEC6 100%);
+  border-color: #9A8935;
+}
+
+.skill-row__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.skill-row__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.skill-row__talent-badges {
+  display: flex;
+  gap: 2px;
+}
+
+.talent-badge {
+  font-size: 12px;
+  line-height: 1;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+}
+
+.skill-row__name {
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-ink);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.skill-row__name:hover {
+  color: var(--color-brass);
+  text-decoration: underline;
+}
+
+.skill-row__dice {
+  font-family: 'Georgia', serif;
+  font-size: 11px;
+  color: #5C4A3A;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.skill-row__attribute-swap {
+  color: var(--color-brass);
+  font-weight: bold;
+  font-style: normal;
+}
+
+.skill-row__talent-desc {
+  color: #7A6A5A;
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.skill-row__value {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-ink);
+  min-width: 28px;
+  height: 34px;
+  text-align: center;
+  background: white;
+  border: 1px solid var(--color-ink);
+  border-radius: 4px;
+  padding: 0 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-row__value:hover {
+  background: var(--color-brass);
+  transform: scale(1.1);
+}
+
+.skill-row__value:active {
+  transform: scale(0.95);
+}
+
+.skill-row__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.skill-row__btn {
+  width: 24px;
+  height: 16px;
+  padding: 0;
+  background: white;
+  border: 1px solid var(--color-ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink);
+  transition: all 0.2s ease;
+}
+
+.skill-row__btn--up {
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid var(--color-ink);
+}
+
+.skill-row__btn--down {
+  border-radius: 0 0 4px 4px;
+  border-top: 1px solid var(--color-ink);
+}
+
+.skill-row__btn:hover:not(:disabled) {
+  background: var(--color-brass);
+  border-color: var(--color-ink);
+  transform: scale(1.1);
+}
+
+.skill-row__btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.skill-row__btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

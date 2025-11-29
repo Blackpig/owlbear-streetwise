@@ -1,0 +1,121 @@
+.import-export {
+  background: var(--color-paper);
+  border: 2px solid var(--color-ink);
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.import-export__header {
+  margin-bottom: 12px;
+}
+
+.import-export__header h3 {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  color: var(--color-ink);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.import-export__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.import-export__button {
+  flex: 1;
+  min-width: 140px;
+  padding: 10px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid var(--color-ink);
+  border-radius: 4px;
+  background: var(--color-paper-light);
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.import-export__button:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.import-export__button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.import-export__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.import-export__button:disabled:hover {
+  background: var(--color-paper-light);
+  color: var(--color-ink);
+  transform: none;
+  box-shadow: none;
+}
+
+.import-export__icon {
+  font-size: 16px;
+}
+
+.import-export__message {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.import-export__message--success {
+  background: #d4edda;
+  border: 2px solid #28a745;
+  color: #155724;
+}
+
+.import-export__message--error {
+  background: #f8d7da;
+  border: 2px solid #dc3545;
+  color: #721c24;
+}
+
+.import-export__message strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.import-export__info {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: var(--color-paper-dark);
+  border-left: 3px solid var(--color-ink);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}

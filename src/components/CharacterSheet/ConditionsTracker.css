@@ -1,0 +1,236 @@
+.conditions-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+/* Status Display - Simple Text */
+.conditions-tracker__status {
+  padding: 4px 0;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  font-family: 'Georgia', serif;
+}
+
+.conditions-tracker__status--healthy {
+  color: #5C4A3A;
+}
+
+.conditions-tracker__status--bruised {
+  color: #A0826D;
+}
+
+.conditions-tracker__status--hurt {
+  color: #8B5A2B;
+}
+
+.conditions-tracker__status--injured {
+  color: #6B4423;
+}
+
+.conditions-tracker__status--broken {
+  color: #3D2817;
+}
+
+.conditions-tracker__label {
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* Bottom Row - Sleep Toggle & Penalty */
+.conditions-tracker__bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.conditions-tracker__penalty {
+  font-size: 11px;
+  font-style: italic;
+  opacity: 0.7;
+  letter-spacing: 0.3px;
+  font-family: 'Georgia', serif;
+  white-space: nowrap;
+}
+
+/* Condition Checkboxes - Horizontal Row */
+.conditions-tracker__checkboxes {
+  display: flex;
+  gap: 3px;
+  justify-content: stretch;
+}
+
+.condition-checkbox {
+  cursor: pointer;
+  flex: 1;
+}
+
+.condition-checkbox input {
+  display: none;
+}
+
+.condition-checkbox__mark {
+  width: 100%;
+  height: 20px;
+  border: 2px solid #5C4A3A;
+  border-radius: 3px;
+  background: #FFFEF9;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.condition-checkbox:hover .condition-checkbox__mark {
+  transform: scale(1.05);
+  border-color: #3D2817;
+}
+
+.condition-checkbox--bruised .condition-checkbox__mark {
+  border-color: #A0826D;
+}
+
+.condition-checkbox--hurt .condition-checkbox__mark {
+  border-color: #8B5A2B;
+}
+
+.condition-checkbox--injured .condition-checkbox__mark {
+  border-color: #6B4423;
+}
+
+.condition-checkbox--broken .condition-checkbox__mark {
+  border-color: #3D2817;
+}
+
+.condition-checkbox.checked.condition-checkbox--bruised .condition-checkbox__mark {
+  background: linear-gradient(135deg, #E8DCC4 0%, #D4C5A9 100%);
+  border-color: #A0826D;
+}
+
+.condition-checkbox.checked.condition-checkbox--hurt .condition-checkbox__mark {
+  background: linear-gradient(135deg, #C9A876 0%, #B8956A 100%);
+  border-color: #8B5A2B;
+}
+
+.condition-checkbox.checked.condition-checkbox--injured .condition-checkbox__mark {
+  background: linear-gradient(135deg, #9A7B5D 0%, #7D5E42 100%);
+  border-color: #6B4423;
+}
+
+.condition-checkbox.checked.condition-checkbox--broken .condition-checkbox__mark {
+  background: linear-gradient(135deg, #5C4332 0%, #3D2817 100%);
+  border-color: #3D2817;
+}
+
+.condition-checkbox.checked .condition-checkbox__mark::after {
+  content: '✓';
+  color: #3D2817;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.condition-checkbox.checked.condition-checkbox--broken .condition-checkbox__mark::after {
+  color: #E8DCC4;
+}
+
+/* Sleep Deprived Toggle - Compact */
+.sleep-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(92, 74, 58, 0.08);
+  font-size: 11px;
+}
+
+.sleep-toggle:hover {
+  background: rgba(92, 74, 58, 0.15);
+}
+
+.sleep-toggle input {
+  display: none;
+}
+
+.sleep-toggle__mark {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #5C4A3A;
+  border-radius: 2px;
+  background: #FFFEF9;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sleep-toggle.checked .sleep-toggle__mark {
+  background: #5C4A3A;
+}
+
+.sleep-toggle.checked .sleep-toggle__mark::after {
+  content: '✓';
+  color: #FFFEF9;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.sleep-toggle__label {
+  font-weight: 600;
+  color: #5C4A3A;
+}
+
+/* Action Buttons - Side by Side, Victorian Style */
+.conditions-tracker__actions {
+  display: flex;
+  gap: 3px;
+}
+
+.condition-action {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: 2px solid #5C4A3A;
+  border-radius: 4px;
+  background: #FFFEF9;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Georgia', serif;
+  font-weight: 600;
+  font-size: 11px;
+  color: #3D2817;
+}
+
+.condition-action:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(61, 40, 23, 0.3);
+  background: #F4E8D0;
+  border-color: #B5A642;
+}
+
+.condition-action:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(61, 40, 23, 0.2);
+}
+
+.condition-action:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.condition-action--rest {
+  border-color: #5C4A3A;
+}
+
+.condition-action--physick {
+  border-color: #5C4A3A;
+}

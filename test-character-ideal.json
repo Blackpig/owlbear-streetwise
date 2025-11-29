@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0",
+  "schemaType": "streetwise-character",
+  "id": "char_test_001",
+  "name": "Archie 'Sawbone' Hawke",
+  "archetype": "penny-physick",
+  "attributes": {
+    "strength": 1,
+    "agility": 2,
+    "wits": 3,
+    "empathy": 4
+  },
+  "skills": {
+    "burgle": 0,
+    "deduce": 2,
+    "hoodwink": 2,
+    "notice": 2,
+    "physick": 3,
+    "pinch": 0,
+    "scramble": 0,
+    "scrap": 0,
+    "sneak": 1,
+    "streetwise": 1,
+    "tinker": 1
+  },
+  "conditions": [],
+  "talents": [
+    "Poultice & Patience"
+  ],
+  "darkSecret": "You are the son of a fairly wealthy Doctor who has fallen on hard times. You were addicted to one of your medicines but you've recovered - or have you?",
+  "notes": "Your carry a broken pocket watch with a name scratched on the back. You proudly wear a lopsided bowler hat."
+}

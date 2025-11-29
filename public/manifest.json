@@ -1,0 +1,15 @@
+{
+  "name": "Streetwise Character Sheet",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "description": "Character sheets and dice roller for Streetwise RPG",
+  "author": "Stuart Hallewell",
+  "icon": "/icon.svg",
+  "action": {
+    "title": "Open Character Sheet",
+    "icon": "/icon.svg",
+    "popover": "/index.html",
+    "height": 950,
+    "width": 1100
+  }
+}

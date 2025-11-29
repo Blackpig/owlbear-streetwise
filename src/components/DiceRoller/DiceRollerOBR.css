@@ -1,0 +1,355 @@
+/* Dice Roller OBR - Victorian Aesthetic */
+
+.dice-roller-obr {
+  background: var(--color-parchment, #F4E8D0);
+  border: 3px solid var(--color-ink, #2B2520);
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 100%;
+  margin: 16px 0;
+}
+
+.dice-roller-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid var(--color-ink, #2B2520);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.dice-roller-header-content {
+  flex: 1;
+}
+
+.dice-roller-header h2 {
+  margin: 0 0 2px 0;
+  font-size: 20px;
+  color: var(--color-ink, #2B2520);
+  line-height: 1.2;
+}
+
+.dice-roller-pool {
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  color: var(--color-brass, #B5A642);
+  font-weight: bold;
+  margin: 0;
+}
+
+.close-btn {
+  background: var(--color-crimson, #8B0000);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.1);
+  background: #A00000;
+}
+
+.dice-roller-talents {
+  background: linear-gradient(135deg, #FFF9E6 0%, #FFF3D6 100%);
+  border: 2px solid var(--color-brass, #B5A642);
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.talent-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  color: var(--color-ink, #2B2520);
+  margin-bottom: 6px;
+}
+
+.talent-icon {
+  font-size: 16px;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.talent-description {
+  font-family: 'Georgia', serif;
+  font-size: 12px;
+  color: #5C4A3A;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+.talent-push-info {
+  font-family: 'Georgia', serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--color-brass, #B5A642);
+}
+
+.dice-results {
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid var(--color-ink, #2B2520);
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+}
+
+.result-row:last-of-type {
+  margin-bottom: 0;
+}
+
+.result-label {
+  font-weight: bold;
+  color: var(--color-ink, #2B2520);
+}
+
+.result-value {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.result-value.success {
+  color: #2E7D32;
+}
+
+.result-value.failure {
+  color: #999;
+}
+
+.result-value.bane {
+  color: var(--color-crimson, #8B0000);
+}
+
+.result-delta {
+  font-size: 14px;
+  color: var(--color-brass, #B5A642);
+  font-style: italic;
+}
+
+.result-warning {
+  font-size: 12px;
+  color: var(--color-crimson, #8B0000);
+  font-weight: normal;
+}
+
+.result-pushed-badge {
+  margin-top: 12px;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, #FFE0B2 0%, #FFCC80 100%);
+  border: 2px solid #E65100;
+  border-radius: 4px;
+  text-align: center;
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--color-ink, #2B2520);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.roll-btn,
+.push-btn,
+.roll-again-btn {
+  width: 100%;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  border: 2px solid var(--color-ink, #2B2520);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 12px;
+}
+
+.roll-btn {
+  background: var(--color-brass, #B5A642);
+  color: white;
+}
+
+.roll-btn:hover:not(:disabled) {
+  background: #9A8935;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.roll-btn:disabled,
+.push-btn:disabled,
+.roll-again-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.push-btn {
+  background: var(--color-crimson, #8B0000);
+  color: white;
+}
+
+.push-btn:hover:not(:disabled) {
+  background: #A00000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.roll-again-btn {
+  background: white;
+  color: var(--color-ink, #2B2520);
+}
+
+.roll-again-btn:hover:not(:disabled) {
+  background: var(--color-parchment, #F4E8D0);
+  transform: translateY(-2px);
+}
+
+.panic-alert {
+  background: #FFEBEE;
+  border: 3px solid var(--color-crimson, #8B0000);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  font-weight: bold;
+  color: var(--color-crimson, #8B0000);
+  animation: pulse 1s ease-in-out 3;
+}
+
+.panic-alert div {
+  margin-bottom: 8px;
+}
+
+.panic-alert div:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(139, 0, 0, 0.4);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px 5px rgba(139, 0, 0, 0.2);
+  }
+}
+
+/* Help Another Player */
+.help-btn {
+  width: 100%;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  border: 2px solid var(--color-ink, #2B2520);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);
+  color: white;
+}
+
+.help-btn:hover {
+  background: linear-gradient(135deg, #388E3C 0%, #2E7D32 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.withdraw-help-btn {
+  background: linear-gradient(135deg, #F57C00 0%, #E65100 100%);
+}
+
+.withdraw-help-btn:hover {
+  background: linear-gradient(135deg, #FB8C00 0%, #F57C00 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.help-dialog {
+  background: var(--color-parchment, #F4E8D0);
+  border: 3px solid var(--color-ink, #2B2520);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 16px 0;
+}
+
+.help-dialog h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: var(--color-ink, #2B2520);
+  font-family: 'Cinzel', 'Georgia', serif;
+}
+
+.help-dialog p {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  color: #5C4A3A;
+}
+
+.player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.player-option {
+  padding: 12px;
+  background: white;
+  border: 2px solid var(--color-ink, #2B2520);
+  border-radius: 6px;
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-ink, #2B2520);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.player-option:hover {
+  background: var(--color-brass, #B5A642);
+  color: white;
+  transform: translateX(4px);
+}
+
+.cancel-btn {
+  width: 100%;
+  padding: 10px 20px;
+  background: #999;
+  border: 2px solid var(--color-ink, #2B2520);
+  border-radius: 6px;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background: #777;
+}
+
+.no-players-message {
+  padding: 16px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  font-style: italic;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}

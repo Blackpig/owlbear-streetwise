@@ -1,0 +1,177 @@
+/* Streetwise Extension - Victorian Aesthetic */
+
+:root {
+  --color-parchment: #F4E8D0;
+  --color-paper: #FFFEF9;
+  --color-ink: #2B2520;
+  --color-crimson: #8B0000;
+  --color-brass: #B5A642;
+  --color-success: #2D5016;
+  --color-warning: #D97706;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: var(--color-parchment);
+  color: var(--color-ink);
+  font-family: 'Georgia', serif;
+  overflow: hidden;
+}
+
+.app {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app__content {
+  flex: 1;
+  overflow: hidden;
+}
+
+
+/* Loading, No Selection States */
+.loading,
+.no-selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 32px;
+  text-align: center;
+}
+
+.loading h2,
+.no-selection h2 {
+  margin: 0 0 16px 0;
+  font-size: 24px;
+  color: var(--color-ink);
+}
+
+.loading p,
+.no-selection p {
+  margin: 0 0 24px 0;
+  font-size: 16px;
+  color: #666;
+}
+
+/* No Character Message (shown in content area) */
+.no-character-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 48px 32px;
+  text-align: center;
+}
+
+.no-character-message h2 {
+  margin: 0 0 16px 0;
+  font-size: 28px;
+  color: var(--color-ink);
+  font-family: 'Cinzel', 'Georgia', serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.no-character-message p {
+  margin: 0 0 24px 0;
+  font-size: 18px;
+  color: #666;
+  max-width: 400px;
+}
+
+.test-character-btn {
+  padding: 10px 20px;
+  background: var(--color-brass);
+  color: white;
+  border: 2px solid var(--color-ink);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Georgia', serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.test-character-btn:hover {
+  background: #9A8935;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+/* Create Character Button */
+.create-character-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px !important;
+  background: linear-gradient(135deg, var(--color-brass) 0%, #9A8935 100%) !important;
+  color: white !important;
+  border: 3px solid var(--color-ink) !important;
+  border-radius: 12px !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  font-family: 'Cinzel', 'Georgia', serif !important;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(181, 166, 66, 0.3);
+  min-width: 280px;
+}
+
+.create-character-btn:hover {
+  background: linear-gradient(135deg, #9A8935 0%, var(--color-brass) 100%) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 20px rgba(181, 166, 66, 0.5) !important;
+}
+
+.create-character-btn svg {
+  flex-shrink: 0;
+}
+
+.create-character-btn:active {
+  transform: translateY(-1px) !important;
+}
+
+/* Dice Modal */
+.dice-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.dice-modal {
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modal-appear 0.3s ease;
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

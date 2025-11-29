@@ -1,0 +1,118 @@
+.attributes-panel {
+  padding: 12px;
+  background: var(--color-paper);
+}
+
+.attributes-panel__title {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-ink);
+  margin: 0 0 8px 0;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--color-ink);
+}
+
+.attributes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.attribute-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: linear-gradient(to right, #FFF 0%, #F8F4EC 100%);
+  border: 1px solid #D4C4B0;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.attribute-row:hover {
+  background: linear-gradient(to right, #FFF5E8 0%, #F0E8DC 100%);
+  border-color: var(--color-ink);
+  transform: translateX(2px);
+}
+
+.attribute-row__name {
+  flex: 1;
+  font-family: 'Georgia', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.attribute-row__value {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-ink);
+  min-width: 28px;
+  height: 34px;
+  text-align: center;
+  background: white;
+  border: 1px solid var(--color-ink);
+  border-radius: 4px;
+  padding: 0 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attribute-row__value:hover {
+  background: var(--color-brass);
+  transform: scale(1.1);
+}
+
+.attribute-row__value:active {
+  transform: scale(0.95);
+}
+
+.attribute-row__controls {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.attribute-row__btn {
+  width: 24px;
+  height: 16px;
+  padding: 0;
+  background: white;
+  border: 1px solid var(--color-ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink);
+  transition: all 0.2s ease;
+}
+
+.attribute-row__btn--up {
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid var(--color-ink);
+}
+
+.attribute-row__btn--down {
+  border-radius: 0 0 4px 4px;
+  border-top: 1px solid var(--color-ink);
+}
+
+.attribute-row__btn:hover:not(:disabled) {
+  background: var(--color-brass);
+  border-color: var(--color-ink);
+  transform: scale(1.1);
+}
+
+.attribute-row__btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.attribute-row__btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

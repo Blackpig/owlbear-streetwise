@@ -1,0 +1,229 @@
+/* Victorian-themed Roll Notifications */
+
+.roll-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  background: linear-gradient(135deg, #F4E8D0 0%, #E8DCC4 100%);
+  border: 3px solid var(--color-ink, #2C2416);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  padding: 12px;
+  opacity: 0;
+  transform: translateX(400px);
+  transition: all 0.3s ease-out;
+  z-index: 10000;
+  font-family: 'Georgia', serif;
+}
+
+.roll-notification.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.notification-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-ink, #2C2416);
+}
+
+.player-name {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--color-ink, #2C2416);
+}
+
+.character-name {
+  font-size: 12px;
+  color: #5C4E3A;
+  font-style: italic;
+}
+
+.dismiss-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--color-ink, #2C2416);
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.dismiss-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.notification-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skill-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-brass, #B5A642);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.roll-results {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.result-item {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.result-item.success {
+  color: #2D5016;
+  background: #A8D08D;
+}
+
+.result-item.failure {
+  color: #5C4E3A;
+  background: #D4C4B0;
+}
+
+.result-item.bane {
+  color: #8B0000;
+  background: #FFB6C1;
+}
+
+.dice-pool {
+  font-size: 12px;
+  color: #5C4E3A;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pushed-badge {
+  background: var(--color-brass, #B5A642);
+  color: var(--color-ink, #2C2416);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Scene Panic Notification */
+.panic-notification {
+  background: linear-gradient(135deg, #FFE0B2 0%, #FFCC80 100%);
+  border-color: #E65100;
+}
+
+.panic-title {
+  font-weight: bold;
+  font-size: 14px;
+  color: #E65100;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.panic-roll {
+  font-size: 14px;
+  font-weight: bold;
+  color: #5C4E3A;
+}
+
+.panic-effect {
+  font-size: 13px;
+  color: #2C2416;
+  font-style: italic;
+  margin-top: 4px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  border-left: 3px solid #E65100;
+}
+
+.strain-increase {
+  font-size: 12px;
+  font-weight: bold;
+  color: #E65100;
+  background: rgba(230, 81, 0, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Player Assistance Notification */
+.assistance-notification {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+  border-color: #2E7D32;
+}
+
+.assistance-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #2E7D32;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.assistance-title svg {
+  flex-shrink: 0;
+}
+
+.assistance-from,
+.assistance-to {
+  font-size: 14px;
+  color: #2C2416;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.assistance-text {
+  font-size: 12px;
+  color: #5C4E3A;
+  font-style: italic;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.assistance-bonus {
+  font-size: 13px;
+  font-weight: bold;
+  color: #2E7D32;
+  background: rgba(46, 125, 50, 0.1);
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 8px;
+  border: 1px solid #2E7D32;
+}
+
+/* Stack multiple notifications */
+.roll-notification:nth-child(2) {
+  top: calc(20px + 160px);
+}
+
+.roll-notification:nth-child(3) {
+  top: calc(20px + 320px);
+}
+
+.roll-notification:nth-child(4) {
+  top: calc(20px + 480px);
+}

@@ -1,0 +1,62 @@
+.notes-panel {
+  background: var(--color-paper);
+  border: 2px solid var(--color-ink);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.notes-panel__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notes-section {
+}
+
+.notes-section__title {
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-ink);
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.notes-section__textarea {
+  width: 100%;
+  padding: 10px;
+  font-family: 'Georgia', serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink);
+  background: #FFF;
+  border: 2px solid var(--color-ink);
+  border-radius: 4px;
+  resize: vertical;
+  min-height: 60px;
+}
+
+.notes-section__textarea:focus {
+  outline: none;
+  border-color: var(--color-brass);
+  box-shadow: 0 0 0 3px rgba(181, 166, 66, 0.2);
+}
+
+.notes-section__text {
+  font-family: 'Georgia', serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-ink);
+  white-space: pre-wrap;
+  padding: 10px;
+  background: linear-gradient(to bottom, #FFF 0%, #F8F4EC 100%);
+  border: 1px solid #D4C4B0;
+  border-radius: 4px;
+}
+
+.notes-section__text em {
+  color: #999;
+}

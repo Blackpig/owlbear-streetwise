@@ -1,0 +1,113 @@
+.definition-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+}
+
+.definition-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-parchment);
+  border: 3px solid var(--color-ink);
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 400px;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.definition-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-ink);
+}
+
+.definition-modal__title {
+  margin: 0;
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-ink);
+}
+
+.definition-modal__close {
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--color-ink);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.definition-modal__close:hover {
+  background: var(--color-crimson);
+  color: white;
+}
+
+.definition-modal__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.definition-modal__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.definition-modal__section-title {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-brass);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.definition-modal__text {
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+/* Custom Scrollbar */
+.definition-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.definition-modal::-webkit-scrollbar-track {
+  background: #E8DCC4;
+}
+
+.definition-modal::-webkit-scrollbar-thumb {
+  background: var(--color-ink);
+  border-radius: 3px;
+}
+
+.definition-modal::-webkit-scrollbar-thumb:hover {
+  background: #5C4A3A;
+}

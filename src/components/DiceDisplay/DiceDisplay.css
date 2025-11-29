@@ -1,0 +1,212 @@
+/* Streetwise Dice Display Styles - Victorian Aesthetic */
+
+:root {
+  --color-parchment: #F4E8D0;
+  --color-ink: #2B2520;
+  --color-crimson: #8B0000;
+  --color-brass: #B5A642;
+  --color-success: #2D5016;
+  --color-warning: #D97706;
+  
+  --regular-die-bg: #E8DCC8;
+  --regular-die-border: #8B7355;
+  --strain-die-bg: #B85450;
+  --strain-die-border: #7A0000;
+}
+
+.dice-display {
+  background: var(--color-parchment);
+  border: 2px solid var(--color-ink);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Georgia', serif;
+}
+
+.dice-display__pushed-badge {
+  background: var(--color-crimson);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.dice-display__groups {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* Dice Group */
+.dice-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dice-group__label {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--color-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dice-group__dice {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Individual Die */
+.die {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 2px solid;
+  font-size: 24px;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.die:hover {
+  transform: scale(1.05);
+}
+
+/* Regular dice - ivory/cream color */
+.die--regular {
+  background: var(--regular-die-bg);
+  border-color: var(--regular-die-border);
+  color: var(--color-ink);
+}
+
+/* Strain dice - crimson color */
+.die--strain {
+  background: var(--strain-die-bg);
+  border-color: var(--strain-die-border);
+  color: white;
+}
+
+/* Success highlight (6) */
+.die--success {
+  box-shadow: 0 0 12px var(--color-success);
+  border-width: 3px;
+}
+
+.die--regular.die--success {
+  border-color: var(--color-success);
+  background: #C8E6C9;
+}
+
+.die--strain.die--success {
+  border-color: var(--color-success);
+  background: #E57373;
+}
+
+/* Bane highlight (1) */
+.die--bane {
+  box-shadow: 0 0 12px var(--color-crimson);
+  border-width: 3px;
+}
+
+.die--regular.die--bane {
+  border-color: var(--color-crimson);
+  background: #FFCDD2;
+}
+
+.die--strain.die--bane {
+  border-color: #3D0000;
+  background: #7A0000;
+  animation: pulse-bane 1s ease-in-out;
+}
+
+@keyframes pulse-bane {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Summary Section */
+.dice-display__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 2px solid var(--color-ink);
+  padding-top: 16px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.summary-item__label {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--color-ink);
+}
+
+.summary-item__value {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.summary-item--success {
+  background: #C8E6C9;
+  border: 2px solid var(--color-success);
+}
+
+.summary-item--success .summary-item__value {
+  color: var(--color-success);
+}
+
+.summary-item--failure {
+  background: #FFCDD2;
+  border: 2px solid var(--color-crimson);
+}
+
+.summary-item--failure .summary-item__value {
+  color: var(--color-crimson);
+}
+
+.summary-item--banes {
+  background: #FFF3E0;
+  border: 2px solid var(--color-warning);
+}
+
+.summary-item--banes .summary-item__value {
+  color: var(--color-warning);
+}
+
+.summary-item__warning {
+  color: var(--color-crimson);
+  font-weight: bold;
+  animation: pulse-warning 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-warning {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.summary-item--strain-increase {
+  background: #FFEBEE;
+  border: 2px solid var(--color-crimson);
+}
+
+.summary-item--strain-increase .summary-item__value {
+  color: var(--color-crimson);
+  font-weight: bold;
+}

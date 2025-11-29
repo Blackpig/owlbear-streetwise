@@ -1,0 +1,334 @@
+/* Streetwise Character Sheet - Victorian Aesthetic */
+
+.character-sheet {
+  background: var(--color-parchment, #F4E8D0);
+  color: var(--color-ink, #2B2520);
+  font-family: 'Georgia', serif;
+  padding: 16px;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.character-sheet__header {
+  text-align: center;
+  border-bottom: 2px solid var(--color-ink, #2B2520);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.character-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+.character-archetype {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-brass, #B5A642);
+}
+
+/* Conditions Tracker */
+.conditions-tracker {
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid var(--color-ink, #2B2520);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.conditions-label {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.conditions-label .penalty {
+  color: var(--color-crimson, #8B0000);
+  margin-left: 8px;
+}
+
+.conditions-boxes {
+  display: flex;
+  gap: 8px;
+}
+
+.condition-box {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--color-ink, #2B2520);
+  border-radius: 4px;
+  background: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.condition-box:hover {
+  transform: scale(1.05);
+}
+
+.condition-box.active {
+  background: var(--color-crimson, #8B0000);
+  color: white;
+}
+
+/* Attributes */
+.attributes-section {
+  margin-bottom: 16px;
+}
+
+.attributes-section h2 {
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  border-bottom: 1px solid var(--color-ink, #2B2520);
+  padding-bottom: 4px;
+}
+
+.attributes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.attribute-display {
+  background: rgba(0, 0, 0, 0.05);
+  border: 2px solid var(--color-ink, #2B2520);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.attribute-name {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.attribute-value {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.attribute-penalty {
+  color: var(--color-crimson, #8B0000);
+  font-size: 16px;
+}
+
+.attribute-effective {
+  font-size: 14px;
+  color: var(--color-brass, #B5A642);
+  margin-top: 4px;
+}
+
+/* Skills */
+.skills-section {
+  margin-bottom: 16px;
+}
+
+.skills-section h2 {
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  border-bottom: 1px solid var(--color-ink, #2B2520);
+  padding-bottom: 4px;
+}
+
+.skill-group {
+  margin-bottom: 12px;
+}
+
+.skill-group h3 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 8px 0;
+  color: var(--color-brass, #B5A642);
+}
+
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: white;
+  border: 1px solid var(--color-ink, #2B2520);
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Georgia', serif;
+}
+
+.skill-item:hover {
+  background: var(--color-brass, #B5A642);
+  color: white;
+  transform: translateX(4px);
+}
+
+.skill-name {
+  font-weight: bold;
+  flex: 1;
+}
+
+.skill-value {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 12px;
+}
+
+.skill-pool {
+  color: var(--color-brass, #B5A642);
+  font-size: 14px;
+}
+
+.skill-item:hover .skill-pool {
+  color: white;
+}
+
+/* Talents */
+.talents-section {
+  margin-bottom: 16px;
+}
+
+.talents-section h2 {
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  border-bottom: 1px solid var(--color-ink, #2B2520);
+  padding-bottom: 4px;
+}
+
+.talents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.talent-item {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--color-ink, #2B2520);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Notes */
+.notes-section {
+  margin-bottom: 16px;
+}
+
+.notes-section h2 {
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  border-bottom: 1px solid var(--color-ink, #2B2520);
+  padding-bottom: 4px;
+}
+
+.notes-section textarea {
+  width: 100%;
+  min-height: 80px;
+  background: white;
+  border: 2px solid var(--color-ink, #2B2520);
+  border-radius: 4px;
+  padding: 8px;
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  resize: vertical;
+}
+
+/* Grid Layout - 3 columns, 2 rows */
+.character-sheet-grid {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-parchment);
+  overflow: hidden;
+}
+
+.character-sheet-grid__header {
+  flex-shrink: 0;
+}
+
+/* Tabs */
+.character-sheet-tabs {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  background: var(--color-parchment);
+  padding: 8px 16px 4px 16px;
+}
+
+.character-sheet-tab {
+  font-family: 'Georgia', serif;
+  font-size: 12px;
+  color: var(--color-ink);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.character-sheet-tab:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.character-sheet-tab:hover {
+  color: var(--color-brass);
+}
+
+.character-sheet-tab--active {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.character-sheet-grid__content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 300px 1fr 300px;
+  gap: 12px;
+  padding: 12px;
+  overflow: hidden;
+}
+
+.character-sheet-grid__content--single {
+  grid-template-columns: 1fr;
+  padding: 16px 8px;
+}
+
+.character-sheet-grid__column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 8px;
+}
+
+.character-sheet-grid__column--span-2 {
+  grid-column: span 2;
+}
+
+/* Custom Scrollbar */
+.character-sheet-grid__column::-webkit-scrollbar {
+  width: 6px;
+}
+
+.character-sheet-grid__column::-webkit-scrollbar-track {
+  background: #E8DCC4;
+}
+
+.character-sheet-grid__column::-webkit-scrollbar-thumb {
+  background: var(--color-ink);
+  border-radius: 3px;
+}
+
+.character-sheet-grid__column::-webkit-scrollbar-thumb:hover {
+  background: #5C4A3A;
+}
