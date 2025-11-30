@@ -4,7 +4,6 @@ import { CharacterHeader } from './CharacterHeader';
 import { AttributesPanel } from './AttributesPanel';
 import { SkillsPanel } from './SkillsPanel';
 import { ConditionsAndTalentsPanel } from './ConditionsAndTalentsPanel';
-import { NotesPanel } from './NotesPanel';
 import { DetailsPanel } from './DetailsPanel';
 import './CharacterSheet.css';
 

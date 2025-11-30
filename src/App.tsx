@@ -7,7 +7,7 @@ import { Toolbar } from './components/Toolbar/Toolbar';
 import { RollNotification } from './components/RollNotification/RollNotification';
 import { getTalentEffects, canPushTwice } from './services/talentEffectsService';
 import { SKILLS } from './types/character';
-import type { BroadcastMessage } from './types/broadcast';
+import type { DiceRollMessage, ScenePanicMessage, PlayerAssistanceMessage } from './types/broadcast';
 import './App.css';
 
 interface RollParams {
@@ -21,7 +21,7 @@ function App() {
   const { ready, role, sceneStrain, updateSceneStrain, isViewingSelf, playerId, latestBroadcast } = useOBR();
   const { character, loading, updateCharacter, hasCharacter, canEdit } = useCharacter();
   const [rollParams, setRollParams] = useState<RollParams | null>(null);
-  const [notifications, setNotifications] = useState<BroadcastMessage[]>([]);
+  const [notifications, setNotifications] = useState<(DiceRollMessage | ScenePanicMessage | PlayerAssistanceMessage)[]>([]);
   const processedTimestampsRef = useRef<Set<number>>(new Set());
 
   // Listen for broadcast messages
@@ -43,6 +43,12 @@ function App() {
     // Don't show assistance notifications if we're the one giving help
     if (message.type === 'PLAYER_ASSISTANCE') {
       if (message.fromPlayerId === playerId) return;
+    }
+
+    // Skip strain change messages (these don't need notifications)
+    if (message.type === 'STRAIN_CHANGE') {
+      processedTimestampsRef.current.add(timestamp);
+      return;
     }
 
     // Mark this timestamp as processed

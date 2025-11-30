@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { processImageFile, validateImageUrl, shouldWarnAboutSize, getProcessingDescription } from '../../utils/imageUtils';
+import { processImageFile, validateImageUrl, shouldWarnAboutSize } from '../../utils/imageUtils';
 import type { ImageProcessResult } from '../../utils/imageUtils';
-import { uploadPortrait, isValidDataUri, isValidUrl } from '../../services/portraitUploadService';
+import { uploadPortrait } from '../../services/portraitUploadService';
 import { CheckIcon, WarningIcon } from '../Icons/Icons';
 import { PortraitGallery } from '../PortraitGallery/PortraitGallery';
 import './PortraitUpload.css';

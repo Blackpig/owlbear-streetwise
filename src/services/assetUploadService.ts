@@ -46,20 +46,11 @@ export async function uploadCharacterTokenToAssets(
 
     // Upload to OBR assets
     // The uploadImages method opens a dialog for the GM to choose where to save
-    const assets = await OBR.assets.uploadImages([upload]);
-
-    if (!assets || assets.length === 0) {
-      return {
-        success: false,
-        error: 'Upload cancelled or failed'
-      };
-    }
-
-    const assetUrl = assets[0].url;
+    // It returns void - success is indicated by not throwing an error
+    await OBR.assets.uploadImages([upload]);
 
     return {
-      success: true,
-      assetUrl
+      success: true
     };
   } catch (error) {
     console.error('Failed to upload character token:', error);

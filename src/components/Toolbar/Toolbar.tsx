@@ -3,14 +3,14 @@ import { useOBR } from '../../contexts/OBRContext';
 import { ImportExport } from '../ImportExport/ImportExport';
 import { PortraitUpload } from '../PortraitUpload/PortraitUpload';
 import { PlayerSelector } from '../PlayerSelector/PlayerSelector';
-import { ImportIcon, ExportIcon, PortraitIcon, ResetIcon, UsersIcon, CreateCharacterIcon } from '../Icons/Icons';
+import { ImportIcon, PortraitIcon, ResetIcon, UsersIcon, CreateCharacterIcon } from '../Icons/Icons';
 import type { Character } from '../../types/character';
 import './Toolbar.css';
 
 interface ToolbarProps {
   character: Character | null;
   onImport: (character: Character) => void;
-  onPortraitUpdate: (portrait: string) => void;
+  onPortraitUpdate: (portrait?: string) => void;
   canEdit: boolean;
   sceneStrain: number;
   onStrainUpdate: (value: number) => void;
@@ -164,6 +164,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
               portrait={character?.portrait}
               onUpdate={onPortraitUpdate}
               canEdit={canEdit}
+              characterId={character?.id || ''}
+              characterName={character?.name || 'Character'}
             />
           </div>
         </>

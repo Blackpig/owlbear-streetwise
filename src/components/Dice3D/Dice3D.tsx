@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Dice3D.css';
 
 interface Dice3DProps {
@@ -18,7 +18,7 @@ export const Dice3D: React.FC<Dice3DProps> = ({
   lockedDice
 }) => {
   const [rolling, setRolling] = useState(false);
-  const [rollKey, setRollKey] = useState(0);
+  const [, setRollKey] = useState(0);
 
   useEffect(() => {
     if (isRolling) {
@@ -72,7 +72,7 @@ export const Dice3D: React.FC<Dice3DProps> = ({
         }
       : shouldAnimate
         ? { animationDelay: `${animationDelay}s` }
-        : undefined;
+        : {};
 
     return (
       <div key={dieKey} className="die-wrapper">

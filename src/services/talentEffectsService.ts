@@ -150,7 +150,6 @@ export function calculateDicePool(
   conditionPenalty: number;
   effectiveAttribute: string;
 } {
-  const skill = SKILLS[skillId];
   const skillValue = character.skills[skillId as keyof Character['skills']];
   const effects = getTalentEffects(character, skillId);
   const attributeValue = character.attributes[effects.effectiveAttribute];

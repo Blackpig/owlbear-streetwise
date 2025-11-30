@@ -17,7 +17,7 @@ const ARCHETYPE_DISPLAY_NAMES: Record<string, string> = {
   'card-twister': 'Card Twister'
 };
 
-export const CharacterSheetHeader: React.FC<CharacterSheetHeaderProps> = ({ character, canEdit }) => {
+export const CharacterSheetHeader: React.FC<CharacterSheetHeaderProps> = ({ character }) => {
   return (
     <div className="character-header">
       {/* Portrait */}

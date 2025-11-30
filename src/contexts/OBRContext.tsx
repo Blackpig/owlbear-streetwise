@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import OBR, { type Player } from '@owlbear-rodeo/sdk';
 import type { BroadcastMessage } from '../types/broadcast';
 import type { HelpingInfo, AssistanceData } from '../services/assistanceService';
