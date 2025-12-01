@@ -2,8 +2,9 @@ import { useState } from 'react';
 import type { Character } from '../../types/character';
 import { PortraitUpload } from '../PortraitUpload/PortraitUpload';
 import { CharacterSilhouetteIcon } from '../Icons/SilhouetteIcons';
-import { LinkTokenIcon, UnlinkTokenIcon, UploadToAssetsIcon } from '../Icons/Icons';
+import { LinkTokenIcon, UnlinkTokenIcon, UploadToAssetsIcon, EditIcon } from '../Icons/Icons';
 import { ConditionsTracker } from './ConditionsTracker';
+import { TurnTracker } from './TurnTracker';
 import { linkCharacterToToken, unlinkCharacterFromToken } from '../../services/tokenLinkingService';
 import { uploadCharacterTokenToAssets } from '../../services/assetUploadService';
 import './CharacterHeader.css';
@@ -37,6 +38,8 @@ export const CharacterHeader: React.FC<CharacterHeaderProps> = ({
   const [linkError, setLinkError] = useState<string | null>(null);
   const [uploadingAsset, setUploadingAsset] = useState(false);
   const [assetUploadMessage, setAssetUploadMessage] = useState<{ text: string; type: 'success' | 'error' } | null>(null);
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [editedName, setEditedName] = useState(character.name);
 
   const handlePortraitClick = () => {
     if (canEdit) {
@@ -104,6 +107,33 @@ export const CharacterHeader: React.FC<CharacterHeaderProps> = ({
     }
   };
 
+  const handleStartEditName = () => {
+    if (!canEdit) return;
+    setIsEditingName(true);
+    setEditedName(character.name);
+  };
+
+  const handleSaveName = () => {
+    const trimmedName = editedName.trim();
+    if (trimmedName && trimmedName !== character.name) {
+      onUpdate({ name: trimmedName });
+    }
+    setIsEditingName(false);
+  };
+
+  const handleCancelEditName = () => {
+    setIsEditingName(false);
+    setEditedName(character.name);
+  };
+
+  const handleNameKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSaveName();
+    } else if (e.key === 'Escape') {
+      handleCancelEditName();
+    }
+  };
+
   return (
     <>
       <div className="character-header-grid">
@@ -151,7 +181,31 @@ export const CharacterHeader: React.FC<CharacterHeaderProps> = ({
 
           {/* Name and Archetype */}
           <div className="character-header-grid__info">
-            <h1 className="character-header-grid__name">{character.name}</h1>
+            {isEditingName ? (
+              <input
+                type="text"
+                className="character-header-grid__name-input"
+                value={editedName}
+                onChange={(e) => setEditedName(e.target.value)}
+                onKeyDown={handleNameKeyDown}
+                onBlur={handleSaveName}
+                autoFocus
+                maxLength={50}
+              />
+            ) : (
+              <div className="character-header-grid__name-container">
+                <h1 className="character-header-grid__name">{character.name}</h1>
+                {canEdit && (
+                  <button
+                    className="character-header-grid__name-edit-btn"
+                    onClick={handleStartEditName}
+                    title="Edit name"
+                  >
+                    <EditIcon />
+                  </button>
+                )}
+              </div>
+            )}
             <div className="character-header-grid__archetype">
               {ARCHETYPE_DISPLAY_NAMES[character.archetype] || character.archetype}
             </div>
@@ -166,7 +220,12 @@ export const CharacterHeader: React.FC<CharacterHeaderProps> = ({
           </div>
         </div>
 
-        {/* Conditions Tracker (3rd column) */}
+        {/* Turn Tracker (3rd column) */}
+        <div className="character-header-grid__turn-tracker">
+          <TurnTracker canEdit={canEdit} />
+        </div>
+
+        {/* Conditions Tracker (4th column) */}
         <div className="character-header-grid__conditions">
           <ConditionsTracker
             character={character}

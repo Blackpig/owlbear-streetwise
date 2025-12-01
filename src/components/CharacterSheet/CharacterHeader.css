@@ -1,6 +1,6 @@
 .character-header-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr minmax(140px, 0.8fr) 1fr;
   gap: 12px;
   padding: 12px;
   background: linear-gradient(to bottom, #F4E8D0 0%, #E8DCC4 100%);
@@ -68,6 +68,16 @@
   flex: 1;
 }
 
+.character-header-grid__name-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.character-header-grid__name-container:hover .character-header-grid__name-edit-btn {
+  opacity: 1;
+}
+
 .character-header-grid__name {
   font-family: 'Cinzel', 'Georgia', serif;
   font-size: 28px;
@@ -76,6 +86,49 @@
   margin: 0;
   line-height: 1.2;
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.character-header-grid__name-edit-btn {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: white;
+  border: 1px solid var(--color-ink);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink);
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.character-header-grid__name-edit-btn:hover {
+  background: var(--color-brass);
+  color: white;
+  transform: scale(1.1);
+}
+
+.character-header-grid__name-input {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--color-ink);
+  background: white;
+  border: 2px solid var(--color-brass);
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin: -2px 0;
+  line-height: 1.2;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+  width: 100%;
+  max-width: 400px;
+}
+
+.character-header-grid__name-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(181, 166, 66, 0.3);
 }
 
 .character-header-grid__archetype {
@@ -189,9 +242,17 @@
 }
 
 /* Conditions - Third Column */
+/* Turn Tracker Column */
+.character-header-grid__turn-tracker {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Conditions Column */
 .character-header-grid__conditions {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 

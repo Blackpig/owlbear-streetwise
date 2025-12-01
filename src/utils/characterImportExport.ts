@@ -27,6 +27,7 @@ export interface CharacterJSON {
     tinker: number;
   };
   conditions: Condition[];
+  initiative: number;
   talents: string[];
   quirks: string[];
   backstory: string[];
@@ -337,6 +338,7 @@ export function migrateLegacyCharacter(legacy: LegacyCharacterJSON): CharacterJS
     attributes,
     skills,
     conditions: [],
+    initiative: 0,
     talents,
     quirks,
     backstory,
@@ -402,6 +404,7 @@ export function importCharacter(jsonString: string): { success: boolean; charact
       attributes: characterJSON.attributes,
       skills: characterJSON.skills,
       conditions: characterJSON.conditions,
+      initiative: characterJSON.initiative ?? 0,
       talents: characterJSON.talents,
       quirks: characterJSON.quirks || [],
       backstory: characterJSON.backstory || [],
