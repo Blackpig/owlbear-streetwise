@@ -79,13 +79,15 @@ export const OBRProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       // Ensure current player is included (GM might not be in party list)
       const hasCurrentPlayer = party.some(p => p.id === id);
       if (!hasCurrentPlayer) {
-        // Construct current player manually
-        const currentPlayer = {
+        // Construct current player manually with required Player properties
+        const currentPlayer: Player = {
           id,
           name: await OBR.player.getName(),
           color: await OBR.player.getColor(),
           role: playerRole,
-          connectionId: await OBR.player.getConnectionId()
+          connectionId: await OBR.player.getConnectionId(),
+          syncView: false,
+          metadata: {}
         };
         party = [...party, currentPlayer];
       }
@@ -98,12 +100,14 @@ export const OBRProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         let allPlayersList = newParty;
         const hasCurrentPlayer = newParty.some(p => p.id === id);
         if (!hasCurrentPlayer) {
-          const currentPlayer = {
+          const currentPlayer: Player = {
             id,
             name: await OBR.player.getName(),
             color: await OBR.player.getColor(),
             role: playerRole,
-            connectionId: await OBR.player.getConnectionId()
+            connectionId: await OBR.player.getConnectionId(),
+            syncView: false,
+            metadata: {}
           };
           allPlayersList = [...newParty, currentPlayer];
         }

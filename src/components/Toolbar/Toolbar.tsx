@@ -27,7 +27,6 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   onPortraitUpdate,
   canEdit,
   sceneStrain,
-  onStrainUpdate,
   isGM,
   readMode,
   showingInitiativeTracker = false,

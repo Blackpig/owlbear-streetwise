@@ -4,8 +4,6 @@
  */
 
 import OBR from '@owlbear-rodeo/sdk';
-import { resetAllPlayersTurnActions } from './turnTrackingService';
-import { resetAllNPCTurnActions } from './npcService';
 
 const TURN_COUNTER_KEY = 'streetwise.turnCounter';
 

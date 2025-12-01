@@ -3,7 +3,7 @@
  * Manages scene challenges where players collectively work toward a goal
  */
 
-import OBR from '@owlbear-rodeo/sdk';
+import OBR, { type Player } from '@owlbear-rodeo/sdk';
 
 export interface SceneChallenge {
   active: boolean;
@@ -20,20 +20,21 @@ const SCENE_CHALLENGE_KEY = 'streetwise.sceneChallenge';
  * This also resets initiative for a new scene
  */
 export async function startSceneChallenge(target: number, description?: string): Promise<void> {
-  const metadata = await OBR.room.getMetadata();
   let players = await OBR.party.getPlayers();
 
   // Ensure current player (GM) is included in the list
   const currentPlayerId = await OBR.player.getId();
   const hasCurrentPlayer = players.some(p => p.id === currentPlayerId);
   if (!hasCurrentPlayer) {
-    // Construct current player manually
-    const currentPlayer = {
+    // Construct current player manually with required Player properties
+    const currentPlayer: Player = {
       id: currentPlayerId,
       name: await OBR.player.getName(),
       color: await OBR.player.getColor(),
       role: await OBR.player.getRole(),
-      connectionId: await OBR.player.getConnectionId()
+      connectionId: await OBR.player.getConnectionId(),
+      syncView: false,
+      metadata: {}
     };
     players = [...players, currentPlayer];
   }

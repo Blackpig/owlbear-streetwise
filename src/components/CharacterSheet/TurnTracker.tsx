@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import OBR from '@owlbear-rodeo/sdk';
 import { useOBR } from '../../contexts/OBRContext';
 import { drawInitiative, swapInitiative } from '../../services/initiativePoolService';
