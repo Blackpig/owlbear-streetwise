@@ -84,6 +84,9 @@ export const Toolbar: React.FC<ToolbarProps> = ({
       <div className="toolbar__brand">
         <img src="/icon.svg" alt="Streetwise" className="toolbar__brand-icon" />
         <h1>Streetwise</h1>
+        {import.meta.env.DEV && (
+          <span className="toolbar__dev-badge">LOCAL DEV</span>
+        )}
       </div>
 
       {/* Center: Action Icons */}
