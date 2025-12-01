@@ -48,6 +48,19 @@ export const ResetIcon = () => (
   </svg>
 );
 
+export const InitiativeTrackerIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="2"/>
+    <path d="M8 7h8M8 12h8M8 17h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+    <circle cx="5.5" cy="7" r="0.5" fill="currentColor"/>
+    <circle cx="5.5" cy="12" r="0.5" fill="currentColor"/>
+    <circle cx="5.5" cy="17" r="0.5" fill="currentColor"/>
+    <text x="18.5" y="9" fontSize="8" fill="currentColor" fontWeight="bold" textAnchor="end">1</text>
+    <text x="18.5" y="14" fontSize="8" fill="currentColor" fontWeight="bold" textAnchor="end">2</text>
+    <text x="18.5" y="19" fontSize="8" fill="currentColor" fontWeight="bold" textAnchor="end">3</text>
+  </svg>
+);
+
 export const CheckIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <polyline points="20 6 9 17 4 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -138,5 +151,29 @@ export const UploadToAssetsIcon = () => (
     {/* Upload arrow */}
     <polyline points="12 11 12 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     <polyline points="9 14 12 11 15 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+export const QuickActionIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Lightning bolt for quick actions */}
+    <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="currentColor" fillOpacity="0.2"/>
+  </svg>
+);
+
+export const SlowActionIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Clock/watch for slow actions */}
+    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+    <polyline points="12 6 12 12 16 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+export const SwapIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 3l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M20 7H4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M8 21l-4-4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import OBR from '@owlbear-rodeo/sdk';
 import { useOBR } from '../../contexts/OBRContext';
 import { performRoll, pushRoll, checkScenePanic, calculateNewStrain } from '../../utils/diceRoller';
@@ -38,6 +38,33 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
   const [panicMessage, setPanicMessage] = useState<string>('');
   const [isRolling, setIsRolling] = useState(false);
   const [showHelpDialog, setShowHelpDialog] = useState(false);
+  const [characterNames, setCharacterNames] = useState<Record<string, string>>({});
+
+  // Load character names from metadata
+  useEffect(() => {
+    const loadCharacterNames = async () => {
+      const metadata = await OBR.room.getMetadata();
+      const names: Record<string, string> = {};
+
+      for (const player of allPlayers) {
+        const character = metadata[`com.streetwise.character-sheet/character/${player.id}`] as { name?: string } | undefined;
+        names[player.id] = character?.name || player.name;
+      }
+
+      setCharacterNames(names);
+    };
+
+    loadCharacterNames();
+
+    // Subscribe to metadata changes
+    const unsubscribe = OBR.room.onMetadataChange(() => {
+      loadCharacterNames();
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [allPlayers]);
 
   const handleRoll = async () => {
     // Reset rolling state first
@@ -285,7 +312,7 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
                         className="player-option"
                         onClick={() => handleHelpPlayer(player.id)}
                       >
-                        {player.name}
+                        {characterNames[player.id] || player.name}
                       </button>
                     ))
                 ) : (

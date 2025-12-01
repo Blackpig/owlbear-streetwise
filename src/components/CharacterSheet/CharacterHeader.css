@@ -1,6 +1,6 @@
 .character-header-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr minmax(140px, 0.8fr) 1fr;
   gap: 12px;
   padding: 12px;
   background: linear-gradient(to bottom, #F4E8D0 0%, #E8DCC4 100%);
@@ -189,9 +189,17 @@
 }
 
 /* Conditions - Third Column */
+/* Turn Tracker Column */
+.character-header-grid__turn-tracker {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Conditions Column */
 .character-header-grid__conditions {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 

@@ -3,7 +3,8 @@ import { useOBR } from '../../contexts/OBRContext';
 import { ImportExport } from '../ImportExport/ImportExport';
 import { PortraitUpload } from '../PortraitUpload/PortraitUpload';
 import { PlayerSelector } from '../PlayerSelector/PlayerSelector';
-import { ImportIcon, PortraitIcon, ResetIcon, UsersIcon, CreateCharacterIcon } from '../Icons/Icons';
+import { ImportIcon, PortraitIcon, ResetIcon, UsersIcon, CreateCharacterIcon, InitiativeTrackerIcon } from '../Icons/Icons';
+import { startInitiativeRound } from '../../services/initiativePoolService';
 import type { Character } from '../../types/character';
 import './Toolbar.css';
 
@@ -16,6 +17,8 @@ interface ToolbarProps {
   onStrainUpdate: (value: number) => void;
   isGM: boolean;
   readMode: boolean;
+  showingInitiativeTracker?: boolean;
+  onToggleInitiativeTracker?: () => void;
 }
 
 export const Toolbar: React.FC<ToolbarProps> = ({
@@ -26,12 +29,28 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   sceneStrain,
   onStrainUpdate,
   isGM,
-  readMode
+  readMode,
+  showingInitiativeTracker = false,
+  onToggleInitiativeTracker
 }) => {
-  const { assistanceDice, helpingInfo } = useOBR();
+  const { assistanceDice, helpingInfo, initiativeRoundActive } = useOBR();
   const [showImportExport, setShowImportExport] = useState(false);
   const [showPortraitUpload, setShowPortraitUpload] = useState(false);
   const [showPlayerSelector, setShowPlayerSelector] = useState(false);
+  const [startingInitiative, setStartingInitiative] = useState(false);
+
+  const handleStartInitiativeRound = async () => {
+    if (!isGM || startingInitiative) return;
+
+    setStartingInitiative(true);
+    try {
+      await startInitiativeRound();
+    } catch (error) {
+      console.error('Failed to start initiative round:', error);
+    } finally {
+      setStartingInitiative(false);
+    }
+  };
 
   const strainColor =
     sceneStrain >= 10 ? 'critical' :
@@ -77,6 +96,17 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           <ImportIcon />
         </button>
 
+        {/* GM: Initiative Tracker Toggle */}
+        {isGM && onToggleInitiativeTracker && (
+          <button
+            className={`toolbar__icon-button ${showingInitiativeTracker ? 'active' : ''}`}
+            onClick={onToggleInitiativeTracker}
+            title={showingInitiativeTracker ? 'View Character' : 'View Initiative Tracker'}
+          >
+            <InitiativeTrackerIcon />
+          </button>
+        )}
+
         {/* Player: Portrait Upload */}
         {!isGM && (
           <button
@@ -112,6 +142,21 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             <span className="assistance-badge__label">Assisted by:</span>
             <span className="assistance-badge__value">{assistanceDice}</span>
           </div>
+        )}
+
+        {/* GM: Initiative Control */}
+        {isGM && (
+          <button
+            className={`initiative-control ${initiativeRoundActive ? 'active' : ''}`}
+            onClick={handleStartInitiativeRound}
+            disabled={startingInitiative}
+            title={initiativeRoundActive ? 'Initiative round active' : 'Start initiative round'}
+          >
+            <span className="initiative-control__label">Initiative</span>
+            <span className="initiative-control__status">
+              {initiativeRoundActive ? 'Active' : 'Start'}
+            </span>
+          </button>
         )}
 
         {/* Strain Tracker - Always rightmost */}

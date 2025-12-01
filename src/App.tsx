@@ -5,6 +5,7 @@ import { CharacterSheet } from './components/CharacterSheet/CharacterSheet';
 import { DiceRollerOBR } from './components/DiceRoller/DiceRollerOBR';
 import { Toolbar } from './components/Toolbar/Toolbar';
 import { RollNotification } from './components/RollNotification/RollNotification';
+import { InitiativeTracker } from './components/InitiativeTracker/InitiativeTracker';
 import { getTalentEffects, canPushTwice } from './services/talentEffectsService';
 import { SKILLS } from './types/character';
 import type { DiceRollMessage, ScenePanicMessage, PlayerAssistanceMessage } from './types/broadcast';
@@ -23,6 +24,7 @@ function App() {
   const [rollParams, setRollParams] = useState<RollParams | null>(null);
   const [notifications, setNotifications] = useState<(DiceRollMessage | ScenePanicMessage | PlayerAssistanceMessage)[]>([]);
   const processedTimestampsRef = useRef<Set<number>>(new Set());
+  const [showingInitiativeTracker, setShowingInitiativeTracker] = useState(false);
 
   // Listen for broadcast messages
   useEffect(() => {
@@ -105,6 +107,7 @@ function App() {
         tinker: 1
       },
       conditions: [],
+      initiative: 0,
       talents: ['Light Fingered', 'Fast Talk'],
       quirks: ['Wears a tattered red scarf', 'Always keeps a bent spoon in pocket'],
       backstory: ['Grew up in workhouse', 'Escaped and learned to survive on the streets'],
@@ -128,11 +131,16 @@ function App() {
         onStrainUpdate={updateSceneStrain}
         isGM={role === 'GM'}
         readMode={!canEdit}
+        showingInitiativeTracker={showingInitiativeTracker}
+        onToggleInitiativeTracker={() => setShowingInitiativeTracker(!showingInitiativeTracker)}
       />
 
-      {/* Character Sheet or No Character Message */}
+      {/* Character Sheet, Initiative Tracker, or No Character Message */}
       <div className="app__content">
-        {!hasCharacter ? (
+        {role === 'GM' && showingInitiativeTracker ? (
+          // GM: Show Initiative Tracker
+          <InitiativeTracker />
+        ) : !hasCharacter ? (
           <div className="no-character-message">
             <h2>No Character Data</h2>
             {isViewingSelf ? (

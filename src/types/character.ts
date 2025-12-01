@@ -24,6 +24,11 @@ export interface Character {
   };
   conditions: Condition[];
   sleepDeprived?: boolean; // Sleep deprivation status
+  initiative: number; // Initiative value for turn order
+  turnActions?: {
+    quick: [boolean, boolean]; // Two quick action checkboxes
+    slow: boolean; // One slow action checkbox
+  };
   talents: string[]; // Talent IDs
   quirks: string[]; // 1-2 appearance/personality quirks
   backstory: string[]; // 1-2 backstory events

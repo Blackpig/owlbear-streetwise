@@ -4,6 +4,7 @@ import { PortraitUpload } from '../PortraitUpload/PortraitUpload';
 import { CharacterSilhouetteIcon } from '../Icons/SilhouetteIcons';
 import { LinkTokenIcon, UnlinkTokenIcon, UploadToAssetsIcon } from '../Icons/Icons';
 import { ConditionsTracker } from './ConditionsTracker';
+import { TurnTracker } from './TurnTracker';
 import { linkCharacterToToken, unlinkCharacterFromToken } from '../../services/tokenLinkingService';
 import { uploadCharacterTokenToAssets } from '../../services/assetUploadService';
 import './CharacterHeader.css';
@@ -166,7 +167,12 @@ export const CharacterHeader: React.FC<CharacterHeaderProps> = ({
           </div>
         </div>
 
-        {/* Conditions Tracker (3rd column) */}
+        {/* Turn Tracker (3rd column) */}
+        <div className="character-header-grid__turn-tracker">
+          <TurnTracker canEdit={canEdit} />
+        </div>
+
+        {/* Conditions Tracker (4th column) */}
         <div className="character-header-grid__conditions">
           <ConditionsTracker
             character={character}
