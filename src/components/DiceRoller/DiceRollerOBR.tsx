@@ -5,6 +5,7 @@ import { performRoll, pushRoll, checkScenePanic, calculateNewStrain } from '../.
 import { Dice3D } from '../Dice3D/Dice3D';
 import { broadcastDiceRoll, broadcastScenePanic } from '../../services/broadcastService';
 import { addAssistance, broadcastAssistance, clearAssistance, withdrawAssistance } from '../../services/assistanceService';
+import { addToSceneChallenge, checkSceneChallengeResolution } from '../../services/sceneChallengeService';
 import type { DiceRoll } from '../../types/dice';
 import './DiceRollerOBR.css';
 
@@ -33,12 +34,14 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
   isAttributeRoll = false,
   onClose
 }) => {
-  const { sceneStrain, updateSceneStrain, assistanceDice, allPlayers, playerId, helpingInfo } = useOBR();
+  const { sceneStrain, updateSceneStrain, assistanceDice, allPlayers, playerId, helpingInfo, sceneChallenge } = useOBR();
   const [currentRoll, setCurrentRoll] = useState<DiceRoll | null>(null);
   const [panicMessage, setPanicMessage] = useState<string>('');
   const [isRolling, setIsRolling] = useState(false);
   const [showHelpDialog, setShowHelpDialog] = useState(false);
   const [characterNames, setCharacterNames] = useState<Record<string, string>>({});
+  const [contributeToChallenge, setContributeToChallenge] = useState(false);
+  const [challengeResolutionMessage, setChallengeResolutionMessage] = useState<string>('');
 
   // Load character names from metadata
   useEffect(() => {
@@ -99,6 +102,31 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
       // Broadcast the roll result to all players
       const player = await OBR.player.getName();
       await broadcastDiceRoll(player, characterName, skillName, roll);
+
+      // Add to scene challenge if opted in
+      if (contributeToChallenge && sceneChallenge.active) {
+        const totalBanes = roll.regularBanes + roll.strainBanes;
+        await addToSceneChallenge(roll.successes, totalBanes);
+
+        // Check for resolution (with updated totals)
+        const updatedChallenge = {
+          ...sceneChallenge,
+          successes: sceneChallenge.successes + roll.successes,
+          banes: sceneChallenge.banes + totalBanes
+        };
+        const resolution = checkSceneChallengeResolution(updatedChallenge);
+        if (resolution) {
+          let message = '';
+          if (resolution === 'success') {
+            message = `🎉 SCENE CHALLENGE COMPLETE! The party succeeded!`;
+          } else if (resolution === 'failure') {
+            message = `⚠️ SCENE CHALLENGE FAILED! Too many banes accumulated.`;
+          } else if (resolution === 'partial') {
+            message = `⚖️ SCENE CHALLENGE PARTIAL SUCCESS! Both success and failure reached.`;
+          }
+          setChallengeResolutionMessage(message);
+        }
+      }
     }, 1010);
   };
 
@@ -123,6 +151,31 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
       // Broadcast the pushed roll result to all players
       const player = await OBR.player.getName();
       await broadcastDiceRoll(player, characterName, skillName, pushedRoll);
+
+      // Add to scene challenge if opted in (pushed rolls also count)
+      if (contributeToChallenge && sceneChallenge.active) {
+        const totalBanes = pushedRoll.regularBanes + pushedRoll.strainBanes;
+        await addToSceneChallenge(pushedRoll.successes, totalBanes);
+
+        // Check for resolution (with updated totals)
+        const updatedChallenge = {
+          ...sceneChallenge,
+          successes: sceneChallenge.successes + pushedRoll.successes,
+          banes: sceneChallenge.banes + totalBanes
+        };
+        const resolution = checkSceneChallengeResolution(updatedChallenge);
+        if (resolution) {
+          let message = '';
+          if (resolution === 'success') {
+            message = `🎉 SCENE CHALLENGE COMPLETE! The party succeeded!`;
+          } else if (resolution === 'failure') {
+            message = `⚠️ SCENE CHALLENGE FAILED! Too many banes accumulated.`;
+          } else if (resolution === 'partial') {
+            message = `⚖️ SCENE CHALLENGE PARTIAL SUCCESS! Both success and failure reached.`;
+          }
+          setChallengeResolutionMessage(message);
+        }
+      }
     }, 1010);
 
     // Update scene strain
@@ -218,9 +271,28 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
       )}
 
       {!currentRoll ? (
-        <button className="roll-btn" onClick={handleRoll} disabled={isRolling}>
-          {isRolling ? 'Rolling...' : 'Roll Dice'}
-        </button>
+        <>
+          {sceneChallenge.active && (
+            <div className="scene-challenge-opt-in">
+              <label className="scene-challenge-checkbox">
+                <input
+                  type="checkbox"
+                  checked={contributeToChallenge}
+                  onChange={(e) => setContributeToChallenge(e.target.checked)}
+                />
+                <span>Contribute to Scene Challenge</span>
+              </label>
+              {sceneChallenge.description && (
+                <div className="scene-challenge-description">
+                  {sceneChallenge.description}
+                </div>
+              )}
+            </div>
+          )}
+          <button className="roll-btn" onClick={handleRoll} disabled={isRolling}>
+            {isRolling ? 'Rolling...' : 'Roll Dice'}
+          </button>
+        </>
       ) : (
         <>
           <Dice3D
@@ -332,6 +404,12 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
               {panicMessage.split('\n').map((line, i) => (
                 <div key={i}>{line}</div>
               ))}
+            </div>
+          )}
+
+          {challengeResolutionMessage && (
+            <div className="challenge-resolution-alert">
+              {challengeResolutionMessage}
             </div>
           )}
 

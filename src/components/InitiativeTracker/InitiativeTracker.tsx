@@ -335,14 +335,13 @@ export const InitiativeTracker: React.FC = () => {
       )}
 
       {/* Initiative List */}
-      {initiativeRoundActive ? (
-        <div className="initiative-tracker__list">
-          {sortedEntries.length === 0 ? (
-            <div className="initiative-tracker__empty">
-              No participants yet. Add NPCs or wait for players to join.
-            </div>
-          ) : (
-            sortedEntries.map((entry) => (
+      <div className="initiative-tracker__list">
+        {sortedEntries.length === 0 ? (
+          <div className="initiative-tracker__empty">
+            No participants yet. Wait for players to join.
+          </div>
+        ) : (
+          sortedEntries.map((entry) => (
               <div key={entry.id} className={`initiative-entry ${entry.isNPC ? 'npc' : 'pc'}`}>
                 {/* Initiative Value */}
                 <div className="initiative-entry__initiative">
@@ -445,13 +444,7 @@ export const InitiativeTracker: React.FC = () => {
               </div>
             ))
           )}
-        </div>
-      ) : (
-        <div className="initiative-tracker__inactive">
-          <p>No active initiative round.</p>
-          <p>Click "Initiative" in the toolbar to start a new round.</p>
-        </div>
-      )}
+      </div>
 
       {/* Swap Initiative Modal */}
       {showSwapModal && (

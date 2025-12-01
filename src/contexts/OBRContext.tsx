@@ -4,6 +4,7 @@ import type { BroadcastMessage } from '../types/broadcast';
 import type { HelpingInfo, AssistanceData } from '../services/assistanceService';
 import type { TurnActions } from '../services/turnTrackingService';
 import type { NPC } from '../services/npcService';
+import type { SceneChallenge } from '../services/sceneChallengeService';
 
 interface OBRContextType {
   ready: boolean;
@@ -22,6 +23,8 @@ interface OBRContextType {
   initiativePool: number[];
   npcs: NPC[];
   turnCounter: number;
+  // Scene challenge state
+  sceneChallenge: SceneChallenge;
   updateSceneStrain: (newStrain: number) => Promise<void>;
   updateInitiative: (initiative: number) => Promise<void>;
   updateTurnActions: (actions: TurnActions) => Promise<void>;
@@ -48,6 +51,7 @@ export const OBRProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [initiativePool, setInitiativePool] = useState<number[]>([]);
   const [npcs, setNpcs] = useState<NPC[]>([]);
   const [turnCounter, setTurnCounter] = useState(1);
+  const [sceneChallenge, setSceneChallenge] = useState<SceneChallenge>({ active: false, target: 0, successes: 0, banes: 0 });
 
   useEffect(() => {
     let unsubscribeBroadcast: (() => void) | undefined;
@@ -135,6 +139,9 @@ export const OBRProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setNpcs((metadata['streetwise.npcs'] as NPC[]) || []);
       setTurnCounter((metadata['streetwise.turnCounter'] as number) || 0);
 
+      // Get initial scene challenge state
+      setSceneChallenge((metadata['streetwise.sceneChallenge'] as SceneChallenge) || { active: false, target: 0, successes: 0, banes: 0 });
+
       OBR.room.onMetadataChange((metadata) => {
         setSceneStrain((metadata['streetwise.strain'] as number) || 0);
 
@@ -156,6 +163,9 @@ export const OBRProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setInitiativePool((metadata['streetwise.initiativeRound.pool'] as number[]) || []);
         setNpcs((metadata['streetwise.npcs'] as NPC[]) || []);
         setTurnCounter((metadata['streetwise.turnCounter'] as number) || 0);
+
+        // Update scene challenge state
+        setSceneChallenge((metadata['streetwise.sceneChallenge'] as SceneChallenge) || { active: false, target: 0, successes: 0, banes: 0 });
 
         // Note: Turn tracking for tracked player is updated via separate effect watching trackedPlayerId
       });
@@ -258,6 +268,7 @@ export const OBRProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       initiativePool,
       npcs,
       turnCounter,
+      sceneChallenge,
       updateSceneStrain,
       updateInitiative,
       updateTurnActions,
