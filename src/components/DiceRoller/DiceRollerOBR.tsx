@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import OBR from '@owlbear-rodeo/sdk';
 import { useOBR } from '../../contexts/OBRContext';
 import { performRoll, pushRoll, checkScenePanic, calculateNewStrain } from '../../utils/diceRoller';
-import { Dice3D } from '../Dice3D/Dice3D';
+import { DiceRoller3D } from '../Dice3D/DiceRoller3D';
 import { broadcastDiceRoll, broadcastScenePanic } from '../../services/broadcastService';
 import { addAssistance, broadcastAssistance, clearAssistance, withdrawAssistance } from '../../services/assistanceService';
 import { addToSceneChallenge, checkSceneChallengeResolution } from '../../services/sceneChallengeService';
@@ -295,7 +295,7 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
         </>
       ) : (
         <>
-          <Dice3D
+          <DiceRoller3D
             regularDice={currentRoll.results.regular}
             strainDice={currentRoll.results.strain}
             isRolling={isRolling}
