@@ -78,7 +78,9 @@ export async function endSceneChallenge(): Promise<void> {
       target: 0,
       successes: 0,
       banes: 0
-    } as SceneChallenge
+    } as SceneChallenge,
+    // Reset strain when ending scene
+    'streetwise.strain': 0
   });
 }
 

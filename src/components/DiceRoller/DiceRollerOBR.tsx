@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import OBR from '@owlbear-rodeo/sdk';
 import { useOBR } from '../../contexts/OBRContext';
 import { performRoll, pushRoll, checkScenePanic, calculateNewStrain } from '../../utils/diceRoller';
-import { Dice3D } from '../Dice3D/Dice3D';
+import { DiceRoller3D } from '../Dice3D/DiceRoller3D';
 import { broadcastDiceRoll, broadcastScenePanic } from '../../services/broadcastService';
 import { addAssistance, broadcastAssistance, clearAssistance, withdrawAssistance } from '../../services/assistanceService';
 import { addToSceneChallenge, checkSceneChallengeResolution } from '../../services/sceneChallengeService';
@@ -137,12 +137,15 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
     setIsRolling(false);
 
     const pushedRoll = pushRoll(currentRoll, canPushTwice);
-    setCurrentRoll(pushedRoll);
 
-    // Trigger animation after a tiny delay to ensure reset
-    setTimeout(() => {
-      setIsRolling(true);
-    }, 10);
+    // Use a Promise to ensure state update completes before animation
+    await new Promise(resolve => {
+      setCurrentRoll(pushedRoll);
+      setTimeout(resolve, 50); // Give React time to update and re-render
+    });
+
+    // Trigger animation after state has settled
+    setIsRolling(true);
 
     // Stop rolling animation after 1000ms
     setTimeout(async () => {
@@ -295,7 +298,7 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
         </>
       ) : (
         <>
-          <Dice3D
+          <DiceRoller3D
             regularDice={currentRoll.results.regular}
             strainDice={currentRoll.results.strain}
             isRolling={isRolling}

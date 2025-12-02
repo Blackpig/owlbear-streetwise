@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { DiceCube } from '../Dice3D/DiceCube';
+import '../Dice3D/DiceCube.css';
 import './D66Roller.css';
 
 interface D66RollerProps {
@@ -79,12 +81,16 @@ export const D66Roller: React.FC<D66RollerProps> = ({ onResult, onClose }) => {
 
         <div className="d66-roller__content">
           <div className="d66-roller__dice">
-            <div className={`die ${isRolling ? 'die--rolling' : ''}`}>
-              <div className="die__face">{die1}</div>
-            </div>
-            <div className={`die ${isRolling ? 'die--rolling' : ''}`}>
-              <div className="die__face">{die2}</div>
-            </div>
+            <DiceCube
+              value={die1}
+              color="crimson"
+              isRolling={isRolling}
+            />
+            <DiceCube
+              value={die2}
+              color="brass"
+              isRolling={isRolling}
+            />
           </div>
 
           {showResult && (
