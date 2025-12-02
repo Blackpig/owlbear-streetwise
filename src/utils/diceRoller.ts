@@ -5,9 +5,12 @@ import { SCENE_PANIC_TABLE } from '../types/dice';
 
 /**
  * Roll a single d6
+ * Uses cryptographically secure random numbers for better randomness
  */
 export function rollD6(): number {
-  return Math.floor(Math.random() * 6) + 1;
+  const array = new Uint32Array(1);
+  crypto.getRandomValues(array);
+  return (array[0] % 6) + 1;
 }
 
 /**
