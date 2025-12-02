@@ -137,12 +137,15 @@ export const DiceRollerOBR: React.FC<DiceRollerOBRProps> = ({
     setIsRolling(false);
 
     const pushedRoll = pushRoll(currentRoll, canPushTwice);
-    setCurrentRoll(pushedRoll);
 
-    // Trigger animation after a tiny delay to ensure reset
-    setTimeout(() => {
-      setIsRolling(true);
-    }, 10);
+    // Use a Promise to ensure state update completes before animation
+    await new Promise(resolve => {
+      setCurrentRoll(pushedRoll);
+      setTimeout(resolve, 50); // Give React time to update and re-render
+    });
+
+    // Trigger animation after state has settled
+    setIsRolling(true);
 
     // Stop rolling animation after 1000ms
     setTimeout(async () => {

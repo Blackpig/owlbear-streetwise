@@ -233,21 +233,14 @@
   }
 }
 
-/* Locked dice (for push rolls) - subtle pulse */
-.dice-cube.locked {
-  opacity: 0.7;
-  animation: pulse-locked 2s ease-in-out infinite;
+/* Locked dice (for push rolls) - dimmed appearance */
+/* Apply opacity to scene wrapper to avoid flattening 3D space */
+.dice-scene:has(.dice-cube.locked) {
+  opacity: 0.6;
 }
 
-@keyframes pulse-locked {
-  0%, 100% {
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  50% {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-  }
+.dice-cube.locked {
+  /* Empty - just used as a marker class */
 }
 
 /* Container for multiple dice */
